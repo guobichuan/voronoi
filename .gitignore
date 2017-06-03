@@ -19,6 +19,7 @@ r?
 
 # Build products
 tmp/*
+bin/
 build?*/
 build/Debug/*
 build/moc/*

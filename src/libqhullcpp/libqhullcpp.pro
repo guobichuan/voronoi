@@ -4,7 +4,7 @@
 # It uses reentrant Qhull
 # -------------------------------------------------
 
-include(../qhull-warn.pri)
+include(../pri/qhull-warn.pri)
 
 DESTDIR = ../../lib
 TEMPLATE = lib

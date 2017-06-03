@@ -4,7 +4,7 @@
 # It uses reeentrant Qhull
 # -------------------------------------------------
 
-include(../qhull-warn.pri)
+include(../pri/qhull-warn.pri)
 
 DESTDIR = ../../lib
 TEMPLATE = lib
@@ -18,4 +18,4 @@ build_pass:CONFIG(debug, debug|release):{
     OBJECTS_DIR = Release
 }
 
-include(../qhull-libqhull-src_r.pri)
+include(../pri/qhull-libqhull-src_r.pri)
