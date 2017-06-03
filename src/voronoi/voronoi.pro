@@ -2,8 +2,8 @@
 # qvoronoi.pro -- Qt project file for qvoronoi.exe
 # -------------------------------------------------
 
-include(../qhull-app-c.pri)
+include(../qhull-app-c_r.pri)
 
-TARGET = qvoronoi
+TARGET = voronoi
 
-SOURCES += qvoronoi.c
+SOURCES += voronoi.c

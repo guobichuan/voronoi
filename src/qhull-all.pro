@@ -24,4 +24,4 @@ SUBDIRS += libqhullstatic  #static library
 SUBDIRS += libqhullstatic_r #static library with reentrant code
 SUBDIRS += libqhullcpp     #static library for C++ interface with libqhullstatic_r
 
-SUBDIRS += qvoronoi
+SUBDIRS += voronoi
