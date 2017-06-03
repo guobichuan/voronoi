@@ -6,5 +6,18 @@ include(../pri/qhull-app-c_r.pri)
 
 TARGET = voronoi
 
+QT += widgets
+
 SOURCES += \
-    voronoi.cpp
+    main.cpp \
+    model.cpp \
+    mainwindow.cpp
+
+HEADERS += \
+    model.h \
+    mainwindow.h
+
+FORMS += \
+    mainwindow.ui
+
+

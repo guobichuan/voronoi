@@ -8,8 +8,7 @@ include(qhull-warn.pri)
 
 DESTDIR = ../../bin
 TEMPLATE = app
-CONFIG += console warn_on
-CONFIG -= qt
+CONFIG += warn_on
 
 LIBS += -L../../lib
 build_pass:CONFIG(debug, debug|release){
