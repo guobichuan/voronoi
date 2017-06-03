@@ -1,5 +1,5 @@
 # -------------------------------------------------
-# qhull-all.pro -- Qt project to build executables and static libraries
+# build-all.pro -- Qt project to build executables and static libraries
 #
 # To build with Qt on mingw
 #   Download Qt SDK, install Perl
@@ -19,8 +19,6 @@
 TEMPLATE = subdirs
 CONFIG += ordered
 
-SUBDIRS += libqhull_r      #shared library with reentrant code
-SUBDIRS += libqhullstatic  #static library
 SUBDIRS += libqhullstatic_r #static library with reentrant code
 SUBDIRS += libqhullcpp     #static library for C++ interface with libqhullstatic_r
 
