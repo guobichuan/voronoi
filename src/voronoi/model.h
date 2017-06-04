@@ -18,11 +18,14 @@ extern "C" {
 }
 #endif
 
+#define INF 1.0e6
+
 class Point3Df {
 public:
     float x;
     float y;
     float z;
+    Point3Df(float x = 0.0f, float y = 0.0f, float z = 0.0f);
 };
 
 class Voronoi {

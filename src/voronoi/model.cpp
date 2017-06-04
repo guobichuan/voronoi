@@ -2,6 +2,9 @@
 #include "libqhull_r/libqhull_r.h"
 using namespace std;
 
+Point3Df::Point3Df(float x, float y, float z) :
+    x(x), y(y), z(z) {}
+
 void Voronoi::print() {
     cout << "Sites:" << endl;
     for (int i = 0; i < sites.size(); ++i) {
@@ -23,6 +26,12 @@ void Voronoi::print() {
 void Voronoi::compute() {
     cells.clear();
     vertices.clear();
+
+    /* Bounding box */
+    generate_by_append(Point3Df(-INF, -INF));
+    generate_by_append(Point3Df(-INF, INF));
+    generate_by_append(Point3Df(INF, -INF));
+    generate_by_append(Point3Df(INF, INF));
 
     int num_sites = sites.size();
     int dim = this->dim;
@@ -73,19 +82,11 @@ void Voronoi::compute() {
     for (int i = 0; i < num_vertices; ++i) {
         if (this->dim == 2) {
             fscanf(fp_o, "%f%f", &x, &y);
-            Point3Df p;
-            p.x = x;
-            p.y = y;
-            p.z = 0.0f;
-            vertices.push_back(p);
+            vertices.push_back(Point3Df(x, y));
         }
         else {
             fscanf(fp_o, "%f%f%f", &x, &y, &z);
-            Point3Df p;
-            p.x = x;
-            p.y = y;
-            p.z = z;
-            vertices.push_back(p);
+            vertices.push_back(Point3Df(x, y, z));
         }
     }
     for (int i = 0; i < num_cells; ++i) {
@@ -131,19 +132,11 @@ void Voronoi::generate_by_file(const char file_location[]) {
     for (int i = 0; i < num_sites; ++i) {
         if (dim == 2) {
             fscanf(fp_in, "%f%f", &x, &y);
-            Point3Df site;
-            site.x = x;
-            site.y = y;
-            site.z = 0.0f;
-            sites.push_back(site);
+            sites.push_back(Point3Df(x, y, 0.0f));
         }
         else {
             fscanf(fp_in, "%f%f%f", &x, &y, &z);
-            Point3Df site;
-            site.x = x;
-            site.y = y;
-            site.z = z;
-            sites.push_back(site);
+            sites.push_back(Point3Df(x, y, z));
         }
     }
     fclose(fp_in);
