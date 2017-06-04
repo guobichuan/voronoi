@@ -7,6 +7,8 @@ MainWindow::MainWindow(QWidget *parent) :
 {
     ui->setupUi(this);
 
+    ui->oglwgt_voronoi->setHelper(&helper2d);
+
     connect(ui->pbtn_random, SIGNAL(clicked(bool)), this, SLOT(onClickedGenerateByRandom()));
     connect(ui->pbtn_manual, SIGNAL(clicked(bool)), this, SLOT(onClickedGenerateByManual()));
     connect(ui->pbtn_file, SIGNAL(clicked(bool)), this, SLOT(onClickedGenerateByFile()));
@@ -24,6 +26,8 @@ void MainWindow::onClickedGenerateByRandom()
     v.clear();
     v.generate_by_random(ui->spbox_random->value(), 2);
     v.print();
+    ui->stackwgt_0l->setCurrentWidget(ui->page_voronoi);
+    ui->oglwgt_voronoi->animate(&v);
 }
 
 void MainWindow::onClickedGenerateByManual()
@@ -42,9 +46,11 @@ void MainWindow::onClickedVoronoi()
         return;
     v.compute();
     v.print();
+    ui->stackwgt_0l->setCurrentWidget(ui->page_voronoi);
+    ui->oglwgt_voronoi->animate(&v);
 }
 
 void MainWindow::onClickedIllustration()
 {
-
+    ui->stackwgt_0l->setCurrentWidget(ui->page_3d);
 }

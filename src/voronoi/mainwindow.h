@@ -3,6 +3,7 @@
 
 #include <QMainWindow>
 #include "model.h"
+#include "voronoidiagramhelper.h"
 
 namespace Ui {
 class MainWindow;
@@ -26,6 +27,7 @@ public slots:
 private:
     Ui::MainWindow *ui;
     Voronoi v;
+    VoronoiDiagramHelper helper2d;
 };
 
 #endif // MAINWINDOW_H

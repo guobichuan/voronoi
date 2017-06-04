@@ -105,8 +105,8 @@ void Voronoi::generate_by_random(int num_sites, int dim, float bound) {
     sites.clear();
     for (int i = 0; i < num_sites; ++i) {
         Point3Df site;
-        site.x = float(rand()) / RAND_MAX * bound;
-        site.y = float(rand()) / RAND_MAX * bound;
+        site.x = (float(rand()) / RAND_MAX - 0.5f) * bound;
+        site.y = (float(rand()) / RAND_MAX - 0.5f) * bound;
         site.z = (dim == 2) ? 0.f : (float(rand()) / RAND_MAX * bound);
         sites.push_back(site);
     }

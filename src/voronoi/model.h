@@ -34,7 +34,7 @@ public:
 
     void print();
     void compute();
-    void generate_by_random(int num_sites, int dim, float bound = 10.0f);
+    void generate_by_random(int num_sites, int dim, float bound = 500.0f);
     void generate_by_append(Point3Df p);
     void generate_by_list(vector<Point3Df> input, int dim);
     void generate_by_file(const char file_location[]);

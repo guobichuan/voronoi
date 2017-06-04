@@ -16,21 +16,29 @@
   <widget class="QWidget" name="centralwidget">
    <layout class="QVBoxLayout" name="verticalLayout">
     <item>
-     <layout class="QHBoxLayout" name="h_0" stretch="1,0">
+     <layout class="QHBoxLayout" name="h_0" stretch="0,0">
       <property name="sizeConstraint">
        <enum>QLayout::SetDefaultConstraint</enum>
       </property>
       <item>
-       <widget class="QOpenGLWidget" name="oglwgt">
-        <property name="enabled">
-         <bool>true</bool>
+       <widget class="QStackedWidget" name="stackwgt_0l">
+        <property name="currentIndex">
+         <number>0</number>
         </property>
-        <property name="minimumSize">
-         <size>
-          <width>0</width>
-          <height>0</height>
-         </size>
-        </property>
+        <widget class="QWidget" name="page_voronoi">
+         <layout class="QGridLayout" name="gridLayout">
+          <item row="0" column="0">
+           <widget class="GL2DWidget" name="oglwgt_voronoi"/>
+          </item>
+         </layout>
+        </widget>
+        <widget class="QWidget" name="page_3d">
+         <layout class="QGridLayout" name="gridLayout_2">
+          <item row="0" column="0">
+           <widget class="QOpenGLWidget" name="oglwgt_3d"/>
+          </item>
+         </layout>
+        </widget>
        </widget>
       </item>
       <item>
@@ -53,10 +61,10 @@
              <number>2</number>
             </property>
             <property name="maximum">
-             <number>1000</number>
+             <number>99999</number>
             </property>
             <property name="value">
-             <number>10</number>
+             <number>50</number>
             </property>
            </widget>
           </item>
@@ -143,6 +151,13 @@
   </widget>
   <widget class="QStatusBar" name="statusbar"/>
  </widget>
+ <customwidgets>
+  <customwidget>
+   <class>GL2DWidget</class>
+   <extends>QOpenGLWidget</extends>
+   <header>gl2Dwidget.h</header>
+  </customwidget>
+ </customwidgets>
  <resources/>
  <connections/>
 </ui>
