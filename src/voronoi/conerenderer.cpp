@@ -64,4 +64,5 @@ void ConeRenderer::makeCones(Voronoi *v, float height, float radius)
         cone->setEnabled(true);
         cones.push_back(cone);
     }
+    v->updated = 2;
 }

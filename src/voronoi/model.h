@@ -30,11 +30,12 @@ public:
 
 class Voronoi {
 public:
+    Voronoi();
     vector<Point3Df> sites;
     vector<Point3Df> vertices;
     vector<vector<int> > cells;
     int dim;
-    boolT updated = True;
+    int updated = 0;
 
     void print();
     void compute();
@@ -42,7 +43,9 @@ public:
     void generate_by_append(Point3Df p);
     void generate_by_list(vector<Point3Df> input, int dim);
     void generate_by_file(const char file_location[]);
+    void save_sites(const char file_location[]);
     void clear();
+    void clearResults();
 };
 
 #endif // MODEL_H

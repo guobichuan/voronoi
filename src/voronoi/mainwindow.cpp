@@ -8,11 +8,12 @@ MainWindow::MainWindow(QWidget *parent) :
     ui->setupUi(this);
 
     ui->oglwgt_voronoi->setHelper(&helper2d);
+    ui->oglwgt_voronoi->setVoronoi(&v);
     setupConeView();
 
     connect(ui->pbtn_random, SIGNAL(clicked(bool)), this, SLOT(onClickedGenerateByRandom()));
-    connect(ui->pbtn_manual, SIGNAL(clicked(bool)), this, SLOT(onClickedGenerateByManual()));
-    connect(ui->pbtn_file, SIGNAL(clicked(bool)), this, SLOT(onClickedGenerateByFile()));
+    connect(ui->pbtn_save, SIGNAL(clicked(bool)), this, SLOT(onClickedSave()));
+    connect(ui->pbtn_load, SIGNAL(clicked(bool)), this, SLOT(onClickedLoad()));
     connect(ui->pbtn_voronoi, SIGNAL(clicked(bool)), this, SLOT(onClickedVoronoi()));
     connect(ui->pbtn_illustration, SIGNAL(clicked(bool)), this, SLOT(onClickedIllustration()));
     connect(ui->hsd_radius, SIGNAL(valueChanged(int)), this, SLOT(onChangedSliderRadius(int)));
@@ -71,40 +72,46 @@ void MainWindow::onClickedGenerateByRandom()
 {
     v.clear();
     v.generate_by_random(ui->spbox_random->value(), 2);
-    v.print();
+    //v.print();
     ui->stackwgt_0l->setCurrentWidget(ui->page_voronoi);
-    ui->oglwgt_voronoi->animate(&v);
+    ui->oglwgt_voronoi->animate();
 }
 
-void MainWindow::onClickedGenerateByManual()
+void MainWindow::onClickedSave()
 {
-
+    QString file_location = QFileDialog::getSaveFileName(this, QString("Save file"), QDir::homePath(), QString("*"));
+    if (file_location == "")
+        return;
+    v.save_sites(file_location.toLatin1());
 }
 
-void MainWindow::onClickedGenerateByFile()
+void MainWindow::onClickedLoad()
 {
-
+    QString file_location = QFileDialog::getOpenFileName(this, QString("Load file"), QDir::homePath(), QString("*"));
+    if (file_location == "")
+        return;
+    v.generate_by_file(file_location.toLatin1());
+    ui->oglwgt_voronoi->animate();
 }
 
 void MainWindow::onClickedVoronoi()
 {
     ui->stackwgt_0l->setCurrentWidget(ui->page_voronoi);
-    if (v.sites.empty() || v.updated == False)
+    if (v.sites.empty() || v.updated > 0)
         return;
     v.compute();
-    v.print();
-    ui->oglwgt_voronoi->animate(&v);
-    coneRenderer->makeCones(&v, ui->hsd_height->value(), ui->hsd_radius->value());
+    //v.print();
+    ui->oglwgt_voronoi->animate();
 }
 
 void MainWindow::onClickedIllustration()
 {
     ui->stackwgt_0l->setCurrentWidget(ui->page_3d);
-    if (v.sites.empty() || v.updated == False)
+    if (v.sites.empty() || v.updated > 1)
         return;
-    v.compute();
-    v.print();
-    ui->oglwgt_voronoi->animate(&v);
+    if (v.updated == 0)
+        v.compute();
+    //v.print();
     coneRenderer->makeCones(&v, ui->hsd_height->value(), ui->hsd_radius->value());
 }
 

@@ -13,6 +13,7 @@
 #include <QtWidgets/QCheckBox>
 #include <QtWidgets/QCommandLinkButton>
 #include <QtGui/QScreen>
+#include <QFileDialog>
 
 #include <Qt3DInput/QInputAspect>
 
@@ -55,8 +56,8 @@ public:
 
 public slots:
     void onClickedGenerateByRandom();
-    void onClickedGenerateByManual();
-    void onClickedGenerateByFile();
+    void onClickedSave();
+    void onClickedLoad();
     void onClickedVoronoi();
     void onClickedIllustration();
     void onChangedSliderRadius(int value);

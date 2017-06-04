@@ -3,7 +3,15 @@
 using namespace std;
 
 Point3Df::Point3Df(float x, float y, float z) :
-    x(x), y(y), z(z) {}
+    x(x), y(y), z(z) {
+}
+
+Voronoi::Voronoi() {
+    dim = 2;
+    sites.clear();
+    vertices.clear();
+    cells.clear();
+}
 
 void Voronoi::print() {
     cout << "Sites:" << endl;
@@ -24,14 +32,14 @@ void Voronoi::print() {
 }
 
 void Voronoi::compute() {
-    cells.clear();
-    vertices.clear();
+    clearResults();
 
     /* Bounding box */
     generate_by_append(Point3Df(-INF, -INF));
     generate_by_append(Point3Df(-INF, INF));
     generate_by_append(Point3Df(INF, -INF));
     generate_by_append(Point3Df(INF, INF));
+
 
     int num_sites = sites.size();
     int dim = this->dim;
@@ -99,7 +107,7 @@ void Voronoi::compute() {
         }
         cells.push_back(r_vs);
     }
-    updated = False;
+    updated = 1;
     return;
 }
 
@@ -113,18 +121,18 @@ void Voronoi::generate_by_random(int num_sites, int dim, float bound) {
         sites.push_back(site);
     }
     this->dim = dim;
-    updated = True;
+    updated = 0;
 }
 
 void Voronoi::generate_by_list(vector<Point3Df> input, int dim) {
     sites = input;
     this->dim = dim;
-    updated = True;
+    updated = 0;
 }
 
 void Voronoi::generate_by_append(Point3Df p) {
     sites.push_back(p);
-    updated = True;
+    updated = 0;
 }
 
 void Voronoi::generate_by_file(const char file_location[]) {
@@ -144,12 +152,33 @@ void Voronoi::generate_by_file(const char file_location[]) {
         }
     }
     fclose(fp_in);
-    updated = True;
+    updated = 0;
+}
+
+void Voronoi::save_sites(const char file_location[])
+{
+    FILE* fp_in = fopen(file_location, "w");
+    fprintf(fp_in, "%d\n%d\n", dim, sites.size());
+    for (int i = 0; i < sites.size(); ++i) {
+        if (dim == 2) {
+            fprintf(fp_in, "%f %f\n", sites[i].x, sites[i].y);
+        }
+        else {
+            fprintf(fp_in, "%f %f %f\n", sites[i].x, sites[i].y, sites[i].z);
+        }
+    }
+    fclose(fp_in);
 }
 
 void Voronoi::clear() {
     sites.clear();
     vertices.clear();
     cells.clear();
-    updated = True;
+    updated = 0;
+}
+
+void Voronoi::clearResults() {
+    vertices.clear();
+    cells.clear();
+    updated = 0;
 }
