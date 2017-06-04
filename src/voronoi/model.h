@@ -18,7 +18,7 @@ extern "C" {
 }
 #endif
 
-#define INF 1.0e6
+#define INF 1e6
 
 class Point3Df {
 public:
@@ -34,6 +34,7 @@ public:
     vector<Point3Df> vertices;
     vector<vector<int> > cells;
     int dim;
+    boolT updated = True;
 
     void print();
     void compute();

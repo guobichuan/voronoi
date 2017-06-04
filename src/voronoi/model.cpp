@@ -99,6 +99,7 @@ void Voronoi::compute() {
         }
         cells.push_back(r_vs);
     }
+    updated = False;
     return;
 }
 
@@ -112,15 +113,18 @@ void Voronoi::generate_by_random(int num_sites, int dim, float bound) {
         sites.push_back(site);
     }
     this->dim = dim;
+    updated = True;
 }
 
 void Voronoi::generate_by_list(vector<Point3Df> input, int dim) {
     sites = input;
     this->dim = dim;
+    updated = True;
 }
 
 void Voronoi::generate_by_append(Point3Df p) {
     sites.push_back(p);
+    updated = True;
 }
 
 void Voronoi::generate_by_file(const char file_location[]) {
@@ -140,10 +144,12 @@ void Voronoi::generate_by_file(const char file_location[]) {
         }
     }
     fclose(fp_in);
+    updated = True;
 }
 
 void Voronoi::clear() {
     sites.clear();
     vertices.clear();
     cells.clear();
+    updated = True;
 }
