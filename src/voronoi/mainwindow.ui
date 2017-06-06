@@ -205,7 +205,7 @@
      <x>0</x>
      <y>0</y>
      <width>1111</width>
-     <height>23</height>
+     <height>22</height>
     </rect>
    </property>
   </widget>
@@ -215,7 +215,7 @@
   <customwidget>
    <class>GL2DWidget</class>
    <extends>QOpenGLWidget</extends>
-   <header>gl2Dwidget.h</header>
+   <header>gl2dwidget.h</header>
   </customwidget>
  </customwidgets>
  <resources/>

@@ -25,7 +25,7 @@ protected:
 private:
     Voronoi *v;
     VoronoiDiagramHelper *helper;
-    void mousePressEvent(QMouseEvent *ev);
+    void mousePressEvent(QMouseEvent *ev) override;
 };
 
 #endif // GL2DWIDGET_H
